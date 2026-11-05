@@ -1,0 +1,20 @@
+# 构建产物
+build/
+.gradle/
+run/
+logs/
+*.log
+
+# 本地配置与存档（不要带进仓库）
+config/
+saves/
+*.ysm
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# 系统垃圾
+.DS_Store
+Thumbs.db

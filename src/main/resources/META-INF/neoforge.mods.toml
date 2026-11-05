@@ -1,0 +1,48 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "ysmstep"
+version = "0.5.0"
+displayName = "YSM 脚步同步"
+authors = "pings"
+description = '''
+让「是，史蒂夫模型」(YSM) 的脚步声跟模型走路动画同一个节拍。
+
+YSM 的走路动画按动画时间循环，原版脚步声按走过的距离触发，两个钟不一样，
+所以大部分模型的脚印和落地声都对不上。这个模组把原版脚步声压掉，
+改成按动画周期走节拍器：一个循环两步，落地就响一声，音色按脚下的方块走。
+
+周期可以调（每个模型校准一次）：/ysmstep 系列命令、或者按键微调、
+或者用触拍采样（看模型走动，按模型落地节奏点键，自动算出周期）。
+
+纯客户端，不改存档，不碰模型文件；关掉就恢复原样。
+'''
+
+[[mixins]]
+config = "ysmstep.mixins.json"
+
+[[mixins]]
+config = "ysmstep.pf.mixins.json"
+
+[[dependencies.ysmstep]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.ysmstep]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.22)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.ysmstep]]
+modId = "presencefootsteps"
+type = "optional"
+versionRange = "[1.21,2)"
+ordering = "AFTER"
+side = "BOTH"

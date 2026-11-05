@@ -1,0 +1,15 @@
+# 统一行尾：仓库里存 LF，Windows 工作区自动转 CRLF
+* text=auto
+
+*.java      text eol=lf
+*.gradle    text eol=lf
+*.md        text eol=lf
+*.json      text eol=lf
+*.toml      text eol=lf
+*.properties text eol=lf
+gradlew     text eol=lf
+*.bat       text eol=crlf
+
+*.jar       binary
+*.png       binary
+*.ogg       binary

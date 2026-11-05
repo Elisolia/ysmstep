@@ -1,0 +1,9 @@
+{
+  "key.categories.ysmstep": "YSM 脚步同步",
+  "key.ysmstep.cycle_up": "步频 快一点",
+  "key.ysmstep.cycle_down": "步频 慢一点",
+  "key.ysmstep.offset_later": "相位 往后挪",
+  "key.ysmstep.offset_earlier": "相位 往前挪",
+  "key.ysmstep.tap": "触拍（照模型落地节奏点）",
+  "key.ysmstep.hud": "显示/隐藏 HUD"
+}

@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+version = '0.5.0'
+group = 'ysmstep'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+// 用的是 gradle 缓存里已有的 21.1.257 工具链；整合包实际跑的是 21.1.236。
+// 这里用到的 API（ClientTickEvent / KeyMapping / GuiLayer / 客户端命令）在 21.1.x 内没变。
+neoForge {
+    version = '21.1.257'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'   : 'ysmstep',
+            'Specification-Vendor'  : 'pings',
+            'Specification-Version' : '1',
+            'Implementation-Title'  : project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor' : 'pings'
+        ])
+    }
+}
