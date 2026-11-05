@@ -24,6 +24,7 @@ public final class Net {
     private Net() {
     }
 
+    @SubscribeEvent
     public static void register(RegisterPayloadHandlersEvent event) {
         PayloadRegistrar r = event.registrar("1").optional();
         r.playToServer(Upload.TYPE, Upload.CODEC, Net::handleUpload);
