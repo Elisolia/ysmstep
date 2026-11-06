@@ -29,6 +29,12 @@ public class StepTimer {
     private int idleTicks = 0;
     private int tickCount = 0;
 
+    /** 累计走了多少步（小数部分由 acc 提供），给视角摇晃换算相位用。 */
+    private double stepsTotal = 0.0;
+
+    /** 最近一次算出的步间隔（tick）。停下后沿用，摇晃相位不会跳。 */
+    private double intervalNow = 0.0;
+
     /** HUD 闪点用：每响一声设成 4，然后慢慢减。 */
     public int stepFlash = 0;
 
@@ -45,6 +51,9 @@ public class StepTimer {
         acc = 0.0;
         wasMoving = false;
         idleTicks = 0;
+        stepsTotal = 0.0;
+        intervalNow = 0.0;
+        Bob.reset();
     }
 
     public void tick() {
@@ -53,6 +62,7 @@ public class StepTimer {
         if (p == null || mc.level == null || mc.isPaused()) {
             return;
         }
+        Bob.beginTick();
         if (stepFlash > 0) {
             stepFlash--;
         }
@@ -74,6 +84,7 @@ public class StepTimer {
                 wasMoving = false;
             }
             dbgAcc = acc;
+            publishPhase();
             heartbeat(p);
             return;
         }
@@ -82,6 +93,7 @@ public class StepTimer {
         if (!p.onGround()) {
             // 空中：不推进也不清零（跳过坑、跳一下都不会打破拍子）
             dbgAcc = acc;
+            publishPhase();
             heartbeat(p);
             return;
         }
@@ -93,6 +105,7 @@ public class StepTimer {
 
         double interval = intervalTicks(p, hs);
         dbgInterval = interval;
+        intervalNow = interval;
         acc += 1.0;
         int guard = 0;
         while (acc >= interval && guard++ < 8) {
@@ -100,7 +113,18 @@ public class StepTimer {
             emit(p, modeFor(p));
         }
         dbgAcc = acc;
+        publishPhase();
         heartbeat(p);
+    }
+
+    /** 把"走到第几步"换算成视角摇晃要的相位（每步 0.6 格，和原版脚步与距离的比例一致）。 */
+    private void publishPhase() {
+        double interval = intervalNow > 0.0 ? intervalNow : Math.max(1.0, YsmClient.CONFIG.stepIntervalTicks());
+        double within = acc / interval;
+        if (within < 0.0 || within > 1.0) {
+            within = 0.0;
+        }
+        Bob.setSteps(stepsTotal + within);
     }
 
     private void heartbeat(LocalPlayer p) {
@@ -156,6 +180,7 @@ public class StepTimer {
 
     /** 一拍。 */
     private void emit(LocalPlayer p, Mode mode) {
+        stepsTotal += 1.0;
         switch (mode) {
             case NONE -> {
                 dbgSteps++;

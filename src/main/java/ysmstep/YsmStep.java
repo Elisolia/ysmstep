@@ -29,9 +29,9 @@ public class YsmStep {
     public YsmStep(IEventBus modBus, ModContainer container) {
         if (FMLEnvironment.dist == Dist.CLIENT) {
             YsmClient.init();
-            LOG.info("[ysmstep] 客户端就绪 0.5.1, {}, pf={}", YsmClient.CONFIG.summary(), PFCompat.present());
+            LOG.info("[ysmstep] 客户端就绪 0.5.2, {}, pf={}", YsmClient.CONFIG.summary(), PFCompat.present());
         } else {
-            LOG.info("[ysmstep] 服务端就绪 0.5.1 —— 负责缓存与广播玩家脚步档案");
+            LOG.info("[ysmstep] 服务端就绪 0.5.2 —— 负责缓存与广播玩家脚步档案");
         }
     }
 }

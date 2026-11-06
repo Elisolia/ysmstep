@@ -46,6 +46,16 @@ public class StepConfig {
     public boolean pfCompat = true;
 
     /**
+     * 视角摇晃：
+     *   vanilla = 原版（相位来自走过的距离）
+     *   sync    = 跟着动画节拍（0.5.2 起）
+     */
+    public String bobMode = "vanilla";
+
+    /** sync 模式下的摇晃幅度倍率（0 = 完全不晃）。 */
+    public double bobScale = 1.0;
+
+    /**
      * 各状态的发声方式：
      *   step = 踩地（默认）
      *   none = 不出声（整个人悬空的跑姿）
@@ -87,6 +97,8 @@ public class StepConfig {
                     debug = read.debug;
                     tapMode = "cycle".equals(read.tapMode) ? "cycle" : "step";
                     pfCompat = read.pfCompat;
+                    bobMode = "sync".equals(read.bobMode) ? "sync" : "vanilla";
+                    bobScale = clamp(read.bobScale, 0.0, 2.0);
                     walkMode = Mode.parse(read.walkMode).id();
                     runMode = Mode.parse(read.runMode).id();
                     sneakMode = Mode.parse(read.sneakMode).id();

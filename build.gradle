@@ -3,7 +3,7 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.148'
 }
 
-version = '0.5.1'
+version = '0.5.2'
 group = 'ysmstep'
 
 java {

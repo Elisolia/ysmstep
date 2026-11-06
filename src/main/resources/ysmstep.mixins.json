@@ -4,7 +4,8 @@
   "package": "ysmstep.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "PlayerStepSoundMixin"
+    "PlayerStepSoundMixin",
+    "GameRendererBobMixin"
   ],
   "injectors": {
     "defaultRequire": 1

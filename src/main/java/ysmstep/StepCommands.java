@@ -63,9 +63,19 @@ public class StepCommands {
             return tell("Presence Footsteps " + (YsmClient.CONFIG.pfCompat ? "接管发声（我们只定节拍）" : "不接管（用原版音色）"));
         });
 
+        sub(root, "bob", () -> {
+            StepConfig c = YsmClient.CONFIG;
+            c.bobMode = "sync".equals(c.bobMode) ? "vanilla" : "sync";
+            c.save();
+            return tell(Bob.stateLine());
+        });
+
         knob(root, "cycle", 0.2, 4.0, () -> YsmClient.CONFIG.cycleSeconds,
                 v -> YsmClient.CONFIG.cycleSeconds = v,
                 "周期", v -> String.format("%.3fs（一步 %.3fs）", v, v / 2));
+        knob(root, "bobscale", 0.0, 2.0, () -> YsmClient.CONFIG.bobScale,
+                v -> YsmClient.CONFIG.bobScale = v,
+                "摇晃幅度", v -> String.format("x%.2f", v));
         knob(root, "offset", -1.0, 1.0, () -> YsmClient.CONFIG.offsetSeconds,
                 v -> YsmClient.CONFIG.offsetSeconds = v,
                 "相位", v -> String.format("%+.3fs", v));
@@ -273,7 +283,8 @@ public class StepCommands {
     private static int status() {
         return tell(StepTimer.stateLine()
                 + String.format(" 潜行x%.2f 音量x%.2f%s", YsmClient.CONFIG.sneakFactor, YsmClient.CONFIG.volume,
-                YsmClient.CONFIG.debug ? " [debug]" : ""));
+                YsmClient.CONFIG.debug ? " [debug]" : "")
+                + " " + Bob.stateLine());
     }
 
     private static int tell(String text) {
