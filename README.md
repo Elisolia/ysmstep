@@ -7,6 +7,8 @@
 ![NeoForge](https://img.shields.io/badge/NeoForge-21.1%2B-CB9E5C)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
+> 最新版本 **0.5.2**（2026-11-06）· [下载](https://github.com/Elisolia/ysmstep/releases/latest) · [更新日志](#更新日志)
+
 ---
 
 ## 它解决什么问题
@@ -185,6 +187,25 @@ Presence Footsteps 可选。
 ```
 
 编译依赖 NeoForge 21.1 工具链；运行环境 21.1.236 起都能跑（只用稳定的 API）。
+
+## 更新日志
+
+### 0.5.2（2026-11-06）
+
+- 新增 **视角摇晃同步**（可选，默认原版）：`/ysmstep bob` 打开后，镜头摇晃的相位改由动画节拍驱动，
+  和脚步声同一个钟；`/ysmstep bobscale 0.8` 调幅度（0–2）。
+- 修正摇晃相位换算：一步 = `walkDist +1.0`（按 `Entity#move` 的实际比例），
+  早期构建里写成 0.6，会让摇晃周期比脚步慢一倍。
+
+### 0.5.1（2026-11-05）
+
+- 修复 `Net.register` 漏 `@SubscribeEvent` 导致的启动崩溃。
+
+### 0.5.0（2026-11-05）
+
+- 双端：服务端逐玩家脚步档案缓存与广播，别人也能听到你的模型脚步（可选装服务端）。
+- 按姿态选择发声方式：`step` / `none` / `wind` / `flap` / `soft`。
+- `/ysmstep share`、`/ysmstep apply`、`/ysmstep who` 联机命令。
 
 ## 致谢
 
