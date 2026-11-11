@@ -5,6 +5,7 @@
 
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62B47A)
 ![NeoForge](https://img.shields.io/badge/NeoForge-21.1%2B-CB9E5C)
+![Fabric](https://img.shields.io/badge/Fabric-1.21.1-DBB69B)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 > 最新版本 **0.5.2**（2026-11-06）· [下载](https://github.com/Elisolia/ysmstep/releases/latest) · [更新日志](#更新日志)
@@ -218,3 +219,14 @@ Presence Footsteps 可选。
 ## 许可
 
 [MIT](LICENSE)
+
+---
+
+## 加载器支持
+
+| 加载器 | 目录 | 产物 |
+|---|---|---|
+| NeoForge 1.21.1 | 仓库根目录 | `build/libs/ysmstep-<version>.jar` |
+| Fabric 1.21.1 | `fabric/` | `fabric/build/libs/ysmstep-fabric-<version>.jar` |
+
+两个版本共用同一套游戏逻辑代码；构建方法见 [fabric/README.md](fabric/README.md)。

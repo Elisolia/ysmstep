@@ -1,0 +1,9 @@
+{
+  "key.categories.ysmstep": "YSM Footstep Sync",
+  "key.ysmstep.cycle_up": "Step rate faster",
+  "key.ysmstep.cycle_down": "Step rate slower",
+  "key.ysmstep.offset_later": "Phase later",
+  "key.ysmstep.offset_earlier": "Phase earlier",
+  "key.ysmstep.tap": "Tap along with the model",
+  "key.ysmstep.hud": "Toggle HUD"
+}
