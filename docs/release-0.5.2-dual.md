@@ -85,4 +85,4 @@ YSM 的走路动画按「动画时间」循环（周期固定），原版脚步�
 - **新增 Fabric 1.21.1 支持**，与 NeoForge 版共用同一套游戏逻辑代码
 - 视角摇晃可跟随动画节拍（`/ysmstep bob`、`/ysmstep bobscale`）
 
-**Fabric 版的构建方式、版本对照和四个移植坑见 [fabric/README.md](../fabric/README.md)。**
+**Fabric 版的构建方式、版本对照和四个移植坑见 [fabric/README.md](https://github.com/Elisolia/ysmstep/blob/main/fabric/README.md)。**
