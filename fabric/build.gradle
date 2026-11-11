@@ -78,3 +78,12 @@ jar {
         ])
     }
 }
+
+// 编译期的 Presence Footsteps 参考 jar：缺了就给出明确提示，而不是让 javac 报「找不到符号」
+def pfJar = file('libs/presencefootsteps.jar')
+if (!pfJar.exists()) {
+    throw new GradleException(
+            "缺少 fabric/libs/presencefootsteps.jar\n" +
+            "它是 Presence Footsteps 的 jar，只用于让 mixin 注解处理器找到目标类（不会打进产物）。\n" +
+            "从 Modrinth 下载 Presence Footsteps（1.21.1 Fabric 版），重命名为 presencefootsteps.jar 放进 fabric/libs/ 后再构建。")
+}

@@ -21,10 +21,14 @@
 
 ```bash
 cd fabric
-# 需要 Fabric 的参考 jar：Presence Footsteps（编译期只需要它的类，不打包）
-#   放成 fabric/libs/presencefootsteps.jar
-./gradlew build        # 或本机 gradle 8.10
+mkdir -p libs
+# Presence Footsteps 的 jar 只用于编译（mixin 目标类要能被找到），不会打进产物
+#   从 Modrinth 下 Presence Footsteps（1.21.1 / Fabric），重命名后放进去：
+#   libs/presencefootsteps.jar
+./gradlew build        # 首次会下载 Gradle 8.10，与根目录同一版本
 ```
+
+缺 `libs/presencefootsteps.jar` 时构建会在配置阶段直接报错并提示该怎么补，不会给出看不懂的 javac 错误。
 
 产物：`fabric/build/libs/ysmstep-fabric-<version>.jar`
 
