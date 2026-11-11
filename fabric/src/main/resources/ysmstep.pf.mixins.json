@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "ysmstep.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "PFTerrestrialGateMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

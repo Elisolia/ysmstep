@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "ysmstep",
+  "version": "${version}",
+  "name": "YSM Step",
+  "description": "让 YSM 模型的走路动画和脚步声对上拍。原版脚步声按走过的距离触发，YSM 的动画按固定周期循环，两者越走越错——这个模组把脚步声改成按动画节拍发声。",
+  "authors": [
+    "pings"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "ysmstep.YsmStepFabric"
+    ],
+    "client": [
+      "ysmstep.YsmStepClientFabric"
+    ]
+  },
+  "mixins": [
+    "ysmstep.mixins.json",
+    "ysmstep.pf.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "presencefootsteps": "*"
+  }
+}

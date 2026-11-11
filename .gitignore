@@ -18,3 +18,8 @@ saves/
 # 系统垃圾
 .DS_Store
 Thumbs.db
+
+# Fabric 子项目的本地依赖与测试服
+fabric/libs/
+fabric/testserver/
+fabric/run/

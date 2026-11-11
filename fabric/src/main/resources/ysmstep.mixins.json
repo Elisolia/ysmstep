@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "ysmstep.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "PlayerStepSoundMixin",
+    "GameRendererBobMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

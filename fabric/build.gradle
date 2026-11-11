@@ -1,0 +1,80 @@
+buildscript {
+    repositories {
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+        mavenCentral()
+    }
+    dependencies {
+        // 不走 plugin marker，直接引实现（1.8.x 的 marker 没发布）
+        classpath 'net.fabricmc:fabric-loom:1.8.13'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'fabric-loom'
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    // 用 Mojang 官方映射：源码里的类名和 NeoForge 版保持一致（GuiGraphics / DeltaTracker），
+    // 这样两边的共享代码几乎可以逐字复制。
+    mappings loom.officialMojangMappings()
+
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    // Presence Footsteps 只在编译期需要（mixin 目标类要能被 AP 找到），运行时不依赖
+    compileOnly files('libs/presencefootsteps.jar')
+}
+
+loom {
+    mixin {
+        defaultRefmapName = 'ysmstep.refmap.json'
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                'Specification-Title'     : 'ysmstep',
+                'Specification-Vendor'    : 'pings',
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.version,
+                'Implementation-Vendor'   : 'pings'
+        ])
+    }
+}
