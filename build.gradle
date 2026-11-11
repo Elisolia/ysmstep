@@ -23,6 +23,8 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
+    // 产物名带加载器后缀，和 Fabric 版一起放进 Release
+    archiveFileName = "ysmstep-${project.version}-neoforge.jar"
     manifest {
         attributes([
             'Specification-Title'   : 'ysmstep',

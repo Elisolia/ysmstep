@@ -87,3 +87,8 @@ if (!pfJar.exists()) {
             "它是 Presence Footsteps 的 jar，只用于让 mixin 注解处理器找到目标类（不会打进产物）。\n" +
             "从 Modrinth 下载 Presence Footsteps（1.21.1 Fabric 版），重命名为 presencefootsteps.jar 放进 fabric/libs/ 后再构建。")
 }
+
+// 产物名：ysmstep-<version>-fabric.jar（与 NeoForge 版命名对齐）
+tasks.named('remapJar') {
+    archiveFileName = "ysmstep-${project.version}-fabric.jar"
+}

@@ -184,7 +184,7 @@ Presence Footsteps 可选。
 
 ```bash
 ./gradlew build          # Windows: gradlew.bat build
-# 产物：build/libs/ysmstep-<version>.jar
+# 产物：build/libs/ysmstep-<version>-neoforge.jar
 ```
 
 编译依赖 NeoForge 21.1 工具链；运行环境 21.1.236 起都能跑（只用稳定的 API）。
@@ -226,7 +226,7 @@ Presence Footsteps 可选。
 
 | 加载器 | 目录 | 产物 |
 |---|---|---|
-| NeoForge 1.21.1 | 仓库根目录 | `build/libs/ysmstep-<version>.jar` |
-| Fabric 1.21.1 | `fabric/` | `fabric/build/libs/ysmstep-fabric-<version>.jar` |
+| NeoForge 1.21.1 | 仓库根目录 | `build/libs/ysmstep-<version>-neoforge.jar` |
+| Fabric 1.21.1 | `fabric/` | `fabric/build/libs/ysmstep-<version>-fabric.jar` |
 
 两个版本共用同一套游戏逻辑代码；构建方法见 [fabric/README.md](fabric/README.md)。

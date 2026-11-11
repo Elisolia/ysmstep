@@ -6,8 +6,8 @@
 
 | 加载器 | 文件 | 说明 |
 |---|---|---|
-| NeoForge 1.21.1 | `ysmstep-0.5.2.jar` | 需要 NeoForge 21.1+ |
-| Fabric 1.21.1 | `ysmstep-fabric-0.5.2.jar` | 需要 Fabric Loader 0.16+ 与 Fabric API |
+| NeoForge 1.21.1 | `ysmstep-0.5.2-neoforge.jar` | 需要 NeoForge 21.1+ |
+| Fabric 1.21.1 | `ysmstep-0.5.2-fabric.jar` | 需要 Fabric Loader 0.16+ 与 Fabric API |
 
 **两个版本功能完全相同，装其中一个即可。** 不要把两个 jar 同时放进同一个 `mods/` 目录。
 
