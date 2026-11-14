@@ -8,14 +8,14 @@
 |---|---|---|
 | 入口 | `@Mod` + `IEventBus` | `YsmStepFabric` / `YsmStepClientFabric` |
 | 网络 | `RegisterPayloadHandlersEvent` | `PayloadTypeRegistry` + `Client/ServerPlayNetworking` |
-| 键位 | `RegisterKeyMappingsEvent` | `KeyBindingHelper` |
+| 键位 | `RegisterKeyMappingsEvent`（支持 `KeyModifier`，面板键显示为 Ctrl+Y） | `KeyBindingHelper`（没有修饰键这一层，绑 Y、Ctrl 在代码里判） |
 | HUD | `RegisterGuiLayersEvent` | `HudRenderCallback`（1.21.1 还没有 HUD 层 API） |
 | 客户端命令 | `RegisterClientCommandsEvent` | `ClientCommandRegistrationCallback` |
 | 配置目录 | `FMLPaths.CONFIGDIR` | `FabricLoader.getConfigDir()` |
 | 模组检测 | `ModList.get().isLoaded` | `FabricLoader.isModLoaded` |
 | 服务端事件 | `PlayerEvent.PlayerLoggedInEvent` | `ServerPlayConnectionEvents.JOIN` |
 
-**共享代码（Bob / StepTimer / RemoteSteps / Profile / ProfileStore / Mode / YsmClient / 三个 mixin）与 NeoForge 版逐字相同。**
+**共享代码（Bob / StepTimer / RemoteSteps / Profile / ProfileStore / Mode / YsmClient / PreviewScreen / 三个 mixin）与 NeoForge 版逐字相同。**
 
 ## 构建
 

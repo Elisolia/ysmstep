@@ -3,6 +3,8 @@ package ysmstep;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import org.lwjgl.glfw.GLFW;
 
 /**
@@ -22,7 +24,15 @@ public class StepKeys {
     public static final KeyMapping TAP = new KeyMapping("key.ysmstep.tap", InputConstants.UNKNOWN.getValue(), CATEGORY);
     public static final KeyMapping HUD_TOGGLE = new KeyMapping("key.ysmstep.hud", InputConstants.UNKNOWN.getValue(), CATEGORY);
 
+    /**
+     * 0.5.3：打开设置面板，默认 Ctrl + Y。
+     * Fabric 没有 NeoForge 的 KeyModifier（那个能把修饰键存进绑定里），
+     * 所以这里绑 Y、Ctrl 在 poll 里自己判 —— 代价是控制界面里只显示 Y。
+     */
+    public static final KeyMapping PANEL = new KeyMapping("key.ysmstep.panel", GLFW.GLFW_KEY_Y, CATEGORY);
+
     public static void register() {
+        KeyBindingHelper.registerKeyBinding(PANEL);
         KeyBindingHelper.registerKeyBinding(CYCLE_UP);
         KeyBindingHelper.registerKeyBinding(CYCLE_DOWN);
         KeyBindingHelper.registerKeyBinding(OFFSET_LATER);
@@ -41,6 +51,11 @@ public class StepKeys {
         int earlier = consume(OFFSET_EARLIER);
         int taps = consume(TAP);
         int hud = consume(HUD_TOGGLE);
+        int panel = consume(PANEL);
+
+        if (panel != 0 && Screen.hasControlDown() && Minecraft.getInstance().screen == null) {
+            Minecraft.getInstance().setScreen(new PreviewScreen());
+        }
 
         if (up != 0 || down != 0) {
             cfg.cycleSeconds = StepConfig.clamp(cfg.cycleSeconds + 0.02 * (up - down), 0.2, 4.0);

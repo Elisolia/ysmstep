@@ -22,11 +22,17 @@ public final class YsmStepClientFabric implements ClientModInitializer {
             RemoteSteps.tick();
             StepKeys.poll();
             PFCompat.onClientTick();
+
+            // 面板里选了「跑」：玩家自己的 tick 会把 sprinting 清掉（没按前进键），
+            // 这里在 tick 全部跑完之后再按住一次，YSM 下一帧就能看到"疾跑中"。
+            if (PreviewScreen.runOverride) {
+                mc.player.setSprinting(true);
+            }
         });
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) ->
                 StepCommands.register(dispatcher));
 
-        YsmStep.LOG.info("[ysmstep] 客户端就绪 0.5.2, {}, pf={}", YsmClient.CONFIG.summary(), PFCompat.present());
+        YsmStep.LOG.info("[ysmstep] 客户端就绪 0.5.3, {}, pf={}", YsmClient.CONFIG.summary(), PFCompat.present());
     }
 }

@@ -67,6 +67,9 @@ public class StepConfig {
     public String runMode = "step";
     public String sneakMode = "step";
 
+    /** 面板主题：dark = 夜间（默认），light = 昼间。 */
+    public String theme = "dark";
+
     /** 你用的模型名（手填）。只用来给"同一模型的其他玩家"做默认值，不碰模型文件。 */
     public String modelName = "";
 
@@ -103,6 +106,7 @@ public class StepConfig {
                     runMode = Mode.parse(read.runMode).id();
                     sneakMode = Mode.parse(read.sneakMode).id();
                     modelName = read.modelName == null ? "" : read.modelName.trim();
+                    theme = "light".equals(read.theme) ? "light" : "dark";
                 }
             } else {
                 save();

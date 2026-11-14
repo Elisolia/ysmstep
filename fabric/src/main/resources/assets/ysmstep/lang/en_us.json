@@ -5,5 +5,6 @@
   "key.ysmstep.offset_later": "Phase later",
   "key.ysmstep.offset_earlier": "Phase earlier",
   "key.ysmstep.tap": "Tap along with the model",
-  "key.ysmstep.hud": "Toggle HUD"
+  "key.ysmstep.hud": "Toggle HUD",
+  "key.ysmstep.panel": "Open settings panel"
 }

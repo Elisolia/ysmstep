@@ -22,6 +22,16 @@ base {
     archivesName = project.archives_base_name
 }
 
+// 产物名带加载器后缀，和 NeoForge 版一起放进 Release：
+//   fabric/build/libs/ysmstep-<version>-fabric.jar
+jar {
+    archiveClassifier = 'fabric'
+}
+
+remapJar {
+    archiveClassifier = 'fabric'
+}
+
 repositories {
     maven {
         name = 'Fabric'

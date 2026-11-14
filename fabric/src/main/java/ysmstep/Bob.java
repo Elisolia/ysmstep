@@ -77,6 +77,12 @@ public final class Bob {
     }
 
     private static float scale() {
+        // 当前姿势不是"踩地"（飞行模型、轮滑模型 → none/wind/soft/flap），脚下根本没有落地，
+        // 镜头就别跟着节拍晃了，幅度归零。
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null && StepTimer.modeFor(mc.player) != Mode.STEP) {
+            return 0.0F;
+        }
         return (float) StepConfig.clamp(YsmClient.CONFIG.bobScale, 0.0, 2.0);
     }
 

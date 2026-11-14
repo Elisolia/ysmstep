@@ -38,6 +38,9 @@ public class StepTimer {
     /** HUD 闪点用：每响一声设成 4，然后慢慢减。 */
     public int stepFlash = 0;
 
+    /** 0.5.3：面板打开期间把节拍器静音，改由玩家按键试听。 */
+    public static boolean muted = false;
+
     // 给 HUD / 调试看的最近一帧状态
     public double dbgAcc = 0.0;
     public double dbgInterval = 0.0;
@@ -110,7 +113,10 @@ public class StepTimer {
         int guard = 0;
         while (acc >= interval && guard++ < 8) {
             acc -= interval;
-            emit(p, modeFor(p));
+            // 面板打开时静音：让玩家自己按键试听，避免和节拍器混在一起听不清
+            if (!muted) {
+                emit(p, modeFor(p));
+            }
         }
         dbgAcc = acc;
         publishPhase();

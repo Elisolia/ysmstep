@@ -155,6 +155,17 @@ public class StepCommands {
         d.register(root);
     }
 
+    /** 面板用：当前已经攒了几拍（显示成 N/4）。 */
+    public static int tapProgress() {
+        return tapCount;
+    }
+
+    /** 面板用：清空触拍缓冲。 */
+    public static void resetTaps() {
+        tapCount = 0;
+        java.util.Arrays.fill(TAPS, 0L);
+    }
+
     private interface Body {
         int run();
     }

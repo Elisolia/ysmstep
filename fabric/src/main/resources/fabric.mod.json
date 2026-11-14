@@ -5,8 +5,9 @@
   "name": "YSM Step",
   "description": "让 YSM 模型的走路动画和脚步声对上拍。原版脚步声按走过的距离触发，YSM 的动画按固定周期循环，两者越走越错——这个模组把脚步声改成按动画节拍发声。",
   "authors": [
-    "pings"
+    "Elisolia"
   ],
+  "icon": "icon.png",
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
