@@ -48,7 +48,8 @@ Each slider also has a one-click reset (1.00s / 0 / ×1.00).
 - **Fabric**: `ysmstep-0.5.3-fabric.jar`
 
 Install only the jar that matches your loader. Both are feature-identical; on Fabric the panel key
-appears as `Y` in Controls (the platform has no modifier-key layer) but Ctrl must still be held.
+appears as `Y` in Controls (the platform has no modifier-key layer) — Ctrl is required only while the
+key is still the default one, and rebinding it removes that requirement.
 
 ### Upgrading
 

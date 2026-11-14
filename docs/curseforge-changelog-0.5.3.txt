@@ -31,7 +31,8 @@ LOADERS
 - NeoForge: ysmstep-0.5.3-neoforge.jar
 - Fabric: ysmstep-0.5.3-fabric.jar
 Install only the jar that matches your loader. On Fabric the panel key shows as "Y" in Controls
-(the platform has no modifier-key layer), but Ctrl still has to be held.
+(the platform has no modifier-key layer): Ctrl is required only while the key is still the default
+one - once you rebind it, plain key presses are enough.
 
 UPGRADING
 Client-side only; replace the jar. Existing calibration in config/ysmstep-client.json is kept.
