@@ -1,0 +1,37 @@
+0.5.3 — in-game settings panel
+
+NEW: settings panel (default Ctrl+Y)
+- 3D model preview with walk / run / idle playback, so you can see exactly when the foot lands
+  - left-drag pans, right-drag rotates, mouse wheel zooms
+- Cycle & phase bar under the preview: one full loop across, two tick marks for the two footfalls,
+  a playhead that moves and flashes on every step
+- Right side is grouped into Voice / Timing / Misc
+
+NEW: listen while you tune
+- With walk or run selected, footsteps play live using the current cycle and phase
+- The "tap calibrate" button silences the metronome for one and a half beats and plays exactly one
+  step per press; after 4 or more taps the cycle is computed automatically (the button shows 0/4 .. 4/4)
+- If Presence Footsteps is installed and compatibility is on, its own material sounds are used
+
+NEW: mouse wheel adjustment
+- plain wheel = 0.1, Shift = x10, Ctrl = x0.1, and for phase only, Alt = x0.01
+- every slider also has a one-click reset button (1.00s / 0 / x1.00)
+
+IMPROVED
+- Voice mode (step / none / wind / flap / soft) is now a dropdown with a short explanation for each
+- Light and dark themes (switch in the bottom-right corner, dark by default, saved to config)
+- Camera bobbing is now forced to zero for postures whose voice mode is not "step" (flying or
+  roller-skating models), so the camera no longer sways when nothing touches the ground
+
+FIXED
+- The mod list showed a stale version number (the value was hardcoded in the mod metadata)
+- Added the mod icon
+
+LOADERS
+- NeoForge: ysmstep-0.5.3-neoforge.jar
+- Fabric: ysmstep-0.5.3-fabric.jar
+Install only the jar that matches your loader. On Fabric the panel key shows as "Y" in Controls
+(the platform has no modifier-key layer), but Ctrl still has to be held.
+
+UPGRADING
+Client-side only; replace the jar. Existing calibration in config/ysmstep-client.json is kept.
