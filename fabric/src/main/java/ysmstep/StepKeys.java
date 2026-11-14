@@ -28,6 +28,7 @@ public class StepKeys {
      * 0.5.3：打开设置面板，默认 Ctrl + Y。
      * Fabric 没有 NeoForge 的 KeyModifier（那个能把修饰键存进绑定里），
      * 所以这里绑 Y、Ctrl 在 poll 里自己判 —— 代价是控制界面里只显示 Y。
+     * 玩家改键之后就不再要求 Ctrl（见 poll 里的 isDefault 判断）。
      */
     public static final KeyMapping PANEL = new KeyMapping("key.ysmstep.panel", GLFW.GLFW_KEY_Y, CATEGORY);
 
@@ -53,7 +54,10 @@ public class StepKeys {
         int hud = consume(HUD_TOGGLE);
         int panel = consume(PANEL);
 
-        if (panel != 0 && Screen.hasControlDown() && Minecraft.getInstance().screen == null) {
+        // 默认键位是 Ctrl+Y，所以「还在默认键位」时才要求按住 Ctrl；
+        // 玩家把键改成别的之后就不用再按了（不然改键等于没改）。
+        if (panel != 0 && Minecraft.getInstance().screen == null
+                && (Screen.hasControlDown() || !PANEL.isDefault())) {
             Minecraft.getInstance().setScreen(new PreviewScreen());
         }
 
