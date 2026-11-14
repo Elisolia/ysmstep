@@ -3,7 +3,7 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.148'
 }
 
-version = '0.5.2'
+version = '0.5.3'
 group = 'ysmstep'
 
 java {
@@ -28,11 +28,12 @@ jar {
     manifest {
         attributes([
             'Specification-Title'   : 'ysmstep',
-            'Specification-Vendor'  : 'pings',
+            'Specification-Vendor'  : 'Elisolia',
             'Specification-Version' : '1',
             'Implementation-Title'  : project.name,
             'Implementation-Version': project.version,
-            'Implementation-Vendor' : 'pings'
+            'Implementation-Vendor' : 'Elisolia'
         ])
     }
 }
+

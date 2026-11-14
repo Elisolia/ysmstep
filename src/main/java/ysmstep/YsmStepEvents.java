@@ -29,10 +29,17 @@ public final class YsmStepEvents {
         RemoteSteps.tick();
         StepKeys.poll();
         PFCompat.onClientTick();
+
+        // 面板里选了「跑」：玩家自己的 tick 会把 sprinting 清掉（没按前进键），
+        // 这里在 tick 全部跑完之后再按住一次，YSM 下一帧就能看到"疾跑中"。
+        if (PreviewScreen.runOverride) {
+            Minecraft.getInstance().player.setSprinting(true);
+        }
     }
 
     @SubscribeEvent
     public static void onClientCommands(RegisterClientCommandsEvent event) {
         StepCommands.register(event.getDispatcher());
+        PreviewCommand.register(event.getDispatcher()); // 0.5.3 测试用，正式版删
     }
 }

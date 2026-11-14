@@ -3,7 +3,10 @@ package ysmstep;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.settings.KeyConflictContext;
+import net.neoforged.neoforge.client.settings.KeyModifier;
 import org.lwjgl.glfw.GLFW;
 
 /**
@@ -23,6 +26,17 @@ public class StepKeys {
     public static final KeyMapping TAP = new KeyMapping("key.ysmstep.tap", InputConstants.UNKNOWN.getValue(), CATEGORY);
     public static final KeyMapping HUD_TOGGLE = new KeyMapping("key.ysmstep.hud", InputConstants.UNKNOWN.getValue(), CATEGORY);
 
+    /**
+     * 0.5.3：打开设置面板，默认 Ctrl + Y。
+     *
+     * 原版 KeyMapping 一个绑定只存一个键，但 NeoForge 加了「修饰键」这一层
+     * （KeyModifier），所以控制界面里会显示成 Ctrl + Y，并且玩家可以自己改。
+     * 注意：isDown() 会校验修饰键，consumeClick() 不会，所以下面两个都要判。
+     */
+    public static final KeyMapping PANEL = new KeyMapping("key.ysmstep.panel",
+            KeyConflictContext.IN_GAME, KeyModifier.CONTROL,
+            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_Y, CATEGORY);
+
     public static void register(RegisterKeyMappingsEvent event) {
         event.register(CYCLE_UP);
         event.register(CYCLE_DOWN);
@@ -30,6 +44,7 @@ public class StepKeys {
         event.register(OFFSET_EARLIER);
         event.register(TAP);
         event.register(HUD_TOGGLE);
+        event.register(PANEL);
     }
 
     /** 客户端 tick 里收键（F1 隐藏 HUD 时也能调）。 */
@@ -42,6 +57,12 @@ public class StepKeys {
         int earlier = consume(OFFSET_EARLIER);
         int taps = consume(TAP);
         int hud = consume(HUD_TOGGLE);
+        int panel = consume(PANEL);
+
+        // 修饰键（Ctrl）由 KeyMapping 自己记着，isDown() 会校验它；consumeClick() 不校验。
+        if (panel != 0 && PANEL.isDown() && Minecraft.getInstance().screen == null) {
+            Minecraft.getInstance().setScreen(new PreviewScreen());
+        }
 
         if (up != 0 || down != 0) {
             cfg.cycleSeconds = StepConfig.clamp(cfg.cycleSeconds + 0.02 * (up - down), 0.2, 4.0);

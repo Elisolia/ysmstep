@@ -4,9 +4,10 @@ license = "MIT"
 
 [[mods]]
 modId = "ysmstep"
-version = "0.5.2"
+version = "${file.jarVersion}"
 displayName = "YSM 脚步同步"
-authors = "pings"
+logoFile = "icon.png"
+authors = "Elisolia"
 description = '''
 让「是，史蒂夫模型」(YSM) 的脚步声跟模型走路动画同一个节拍。
 

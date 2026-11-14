@@ -105,8 +105,7 @@ public final class PFCompat {
     }
 
     /** 兜底：别让放行标记堆积。 */
-    public static void onClientTick() {
-        Iterator<Map.Entry<UUID, Integer>> it = allowFrames.entrySet().iterator();
+    public static void onClientTick() {        Iterator<Map.Entry<UUID, Integer>> it = allowFrames.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<UUID, Integer> e = it.next();
             int v = e.getValue() - 1;
@@ -118,9 +117,26 @@ public final class PFCompat {
         }
     }
 
+    /**
+     * 面板试听用：求 PF 立刻踩一步（用它自己的音色）。
+     *
+     * PF 判据是 `entity.moveDist - dmwBase > distance`，站着不动就永远攒不到。
+     * 所以这里临时把累计位移往前推一段（> 一步阈值），再放行一帧闸门，
+     * PF 就会以为刚走完一步、用它自己的材质音踩一下。
+     *
+     * @return true = 交给 PF 了；false = 没装 PF / 关掉了，调用方自己去响一声
+     */
+    public static boolean requestOneStep(Player p) {
+        if (!active() || p == null) {
+            return false;
+        }
+        p.moveDist += 3.0f;
+        handoff(p.getUUID());
+        return true;
+    }
+
     /** 给状态行看的一句话：mixin 到底打上没有。 */
-    public static String gateState() {
-        if (!present) {
+    public static String gateState() {        if (!present) {
             return "";
         }
         if (!YsmClient.CONFIG.pfCompat) {
