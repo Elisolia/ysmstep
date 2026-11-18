@@ -1,0 +1,4 @@
+# 把同一个人的多个提交邮箱归并到一个身份，避免贡献者列表里出现两个“人”。
+# GitHub 会读取 .mailmap 来合并贡献者统计。
+Elisolia <Elisolia@users.noreply.github.com> <pings@users.noreply.github.com>
+Elisolia <Elisolia@users.noreply.github.com> <160157275+Elisolia@users.noreply.github.com>
